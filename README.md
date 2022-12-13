@@ -1,5 +1,4 @@
 # se-summative
 
 ## Authors
-Topister Onyango
-Millicent Malinga
+Topister Onyango & Millicent Malinga
