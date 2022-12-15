@@ -1,16 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% load humanize %}
 
-{% block title %} | Browse Property Listings {% endblock %}
+{% block title %} | Browse Properties{% endblock %}
 
 {% block content %}
-<section id="showcase-inner" class="py-5 text-white">
+<section id="" class="py-5 text-white" style="background-color:black;">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">Browse Our Properties</h1>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <h1 class="display-4">Check out our Properties</h1>
+          <p class="lead">A third-party contractor's daily control over residential, commercial, or industrial real estate is known as property management.</p>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
             <a href="{% url 'index' %}">
               <i class="fas fa-home"></i> Home</a>
           </li>
-          <li class="breadcrumb-item active"> Browse Listings</li>
+          <li class="breadcrumb-item active"> Browse Properties</li>
         </ol>
       </nav>
     </div>
@@ -49,7 +49,7 @@
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ listing.title }}</h4>
                     <p>
-                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode}}</p>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
@@ -74,55 +74,58 @@
                       <i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
                   </div>
                   <hr>
-                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">More Info</a>
+                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block" style="background: black;">More Info</a>
                 </div>
               </div>
             </div>
           {% endfor %}
         {% else %}
           <div class="col-md-12">
-            <p>No Listings Available</p>
+            <p>No properties available</p>
           </div>
         {% endif %}
-      </div>
+        
+      </div> 
 
+      <!-- PAGINATION -->
       <div class="row">
         <div class="col-md-12">
           {% if listings.has_other_pages %}
             <ul class="pagination">
-              {% if listings.has_previous %}
-                <li class="page-item">
-                  <a href="?page={{listings.previous_page_number}}" class="page-link">&laquo;</a>
-                </li>
-              {% else %}
-                <li class="page-item disabled">
-                  <a class="page-link">&laquo;</a>
-                </li>
-              {% endif %}
-              {% for i in listings.paginator.page_range %}
-                {% if listings.number == i %}
-                  <li class="page-item active">
-                    <a class="page-link">{{i}}</a>
+                {% if listings.has_previous %}
+                  <li class="page-item">
+                    <a href="?page={{listings.previous_page_number}}" class="page-link">&laquo;</a>
                   </li>
                 {% else %}
-                  <li class="page-item">
-                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                  <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
                   </li>
                 {% endif %}
-              {% endfor %}
-              {% if listings.has_next %}
+                {% for i in listings.paginator.page_range %}
+                  {% if listings.number == i %}
+                    <li class="page-item active">
+                      <a class="page-link">{{i}}</a>
+                    </li>
+                  {% else %}
+                    <li class="page-item">
+                      <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+                {% if listings.has_next %}
                 <li class="page-item">
                   <a href="?page={{listings.next_page_number}}" class="page-link">&raquo;</a>
                 </li>
-              {% else %}
-                <li class="page-item disabled">
-                  <a class="page-link">&raquo;</a>
-                </li>
-              {% endif %}
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                  </li>
+                {% endif %}
             </ul>
           {% endif %}
         </div>
       </div>
+
     </div>
   </section>
 {% endblock %}
