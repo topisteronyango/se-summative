@@ -4,6 +4,7 @@
 Topister Onyango & Millicent Malinga
 
 ## How To Run The Program
+- cd into inzu main folder
 - pip install virtualenv
 - virtualenv -p python3 venv
 - source venv/bin/activate
